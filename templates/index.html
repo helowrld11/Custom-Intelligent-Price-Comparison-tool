@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PricePulse AI - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar glass-panel">
+            <div class="logo">
+                <div class="pulse-icon"></div>
+                <h2>PricePulse<span>AI</span></h2>
+            </div>
+            <nav>
+                <a href="#dashboard" class="nav-item active" data-view="dashboard">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    Dashboard
+                </a>
+                <a href="#products" class="nav-item" data-view="products">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    My Products
+                </a>
+                <a href="#alerts" class="nav-item" data-view="alerts">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    Alerts
+                </a>
+            </nav>
+            <div class="user-profile">
+                <div class="avatar">U</div>
+                <div>User</div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="search-bar glass-panel" style="position: relative;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" id="add-product-url" placeholder="Enter product name or URL to compare prices..." autocomplete="off">
+                    <button class="btn btn-primary" id="btn-add-product">Search & Compare</button>
+                    <div id="search-suggestions" class="suggestions-container"></div>
+                </div>
+            </header>
+
+            <div class="view-container active" id="view-dashboard">
+                <div class="stats-grid">
+                    <div class="stat-card glass-panel">
+                        <h3>Total Tracked</h3>
+                        <div class="value" id="stat-total">0</div>
+                    </div>
+                    <div class="stat-card glass-panel">
+                        <h3>Active Alerts</h3>
+                        <div class="value" id="stat-alerts">0</div>
+                    </div>
+                    <div class="stat-card glass-panel highlight">
+                        <h3>AI Recommends "Buy"</h3>
+                        <div class="value" id="stat-buy">0</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="recent-products glass-panel">
+                        <div class="panel-header">
+                            <h3>Recently Added</h3>
+                        </div>
+                        <div class="product-list" id="dashboard-product-list">
+                            <!-- Populated by JS -->
+                            <div class="empty-state">No products tracked yet. Add one above!</div>
+                        </div>
+                    </div>
+                    
+                    <div class="ai-insights glass-panel">
+                        <div class="panel-header">
+                            <h3>AI Decision Engine</h3>
+                            <span class="badge">Live</span>
+                        </div>
+                        <div class="insights-list" id="dashboard-insights-list">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="view-container" id="view-products">
+                <div class="page-header">
+                    <h2>Tracked Products</h2>
+                </div>
+                <div class="products-grid" id="all-products-grid">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+            
+            <div class="view-container" id="view-alerts">
+                <div class="page-header">
+                    <h2>My Alerts</h2>
+                </div>
+                <div class="alerts-list glass-panel" id="alerts-container">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content glass-panel" id="product-modal-content">
+            <!-- Modal Body -->
+        </div>
+    </div>
+
+    <!-- Search Compare Modal -->
+    <div class="modal" id="search-modal">
+        <div class="modal-content glass-panel" id="search-modal-content">
+            <!-- Modal Body -->
+        </div>
+    </div>
+
+    <script src="/static/js/main.js?v=4"></script>
+</body>
+</html>
